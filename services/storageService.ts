@@ -10,8 +10,8 @@ const mapRowToTask = (row: any): Task => ({
   completed: row.completed,
   priority: row.priority,
   category: row.category,
-  // Convert Supabase timestamptz string to number for app compatibility
-  createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
+  // created_at is stored as bigint in Supabase, use directly as number
+  createdAt: row.created_at ?? Date.now(),
 });
 
 // Map Task (camelCase) to DB row (snake_case)
@@ -23,7 +23,7 @@ const mapTaskToRow = (task: Task) => ({
   completed: task.completed,
   priority: task.priority,
   category: task.category,
-  created_at: new Date(task.createdAt).toISOString(),
+  created_at: task.createdAt,
 });
 
 export const getTasks = async (): Promise<Task[]> => {
