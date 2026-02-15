@@ -24,6 +24,7 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onA
     e.preventDefault();
     onAdd({
       title,
+      description: '',
       dueDate,
       priority,
       category,
@@ -53,6 +54,7 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onA
     if (onAddMultiple && aiSuggestions.length > 0) {
       const tasks = aiSuggestions.map(suggestion => ({
         title: suggestion,
+        description: '',
         dueDate,
         priority,
         category,
@@ -108,8 +110,8 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onA
                 <h3 className="text-sm font-semibold text-indigo-900 flex items-center gap-2">
                   <Wand2 className="w-4 h-4" /> AI Suggestions
                 </h3>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={() => setAiSuggestions([])}
                   className="text-xs text-indigo-400 hover:text-indigo-600"
                 >
@@ -169,8 +171,8 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onA
                   onClick={() => setCategory(cat)}
                   className={`
                     px-3 py-1.5 rounded-full text-xs font-medium transition-all
-                    ${category === cat 
-                      ? 'bg-slate-800 text-white shadow-md transform scale-105' 
+                    ${category === cat
+                      ? 'bg-slate-800 text-white shadow-md transform scale-105'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}
                   `}
                 >
@@ -181,7 +183,7 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = ({ isOpen, onClose, onA
           </div>
 
           <div className="pt-4 flex gap-3">
-             <button
+            <button
               type="button"
               onClick={onClose}
               className="flex-1 px-4 py-2.5 border border-slate-200 text-slate-700 rounded-xl hover:bg-slate-50 font-medium transition-colors"

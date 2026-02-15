@@ -18,7 +18,7 @@ const mapRowToTask = (row: any): Task => ({
 const mapTaskToRow = (task: Task) => ({
   id: task.id,
   title: task.title,
-  description: task.description,
+  description: task.description ?? '',
   due_date: task.dueDate,
   completed: task.completed,
   priority: task.priority,
@@ -43,7 +43,7 @@ export const addTaskToDb = async (task: Task) => {
   const { error } = await supabase
     .from('tasks')
     .insert(mapTaskToRow(task));
-    
+
   if (error) {
     console.error('Error adding task to Supabase:', error);
     throw error;
