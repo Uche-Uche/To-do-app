@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
+const apiKey = process.env.API_KEY || 'AIzaSyC6Q1x2Q06xvU46a8KHntbbVCVXvT6ktKQ';
 const ai = new GoogleGenAI({ apiKey });
 
 // Helper to check if API key exists, though typically we assume it does based on instructions.
